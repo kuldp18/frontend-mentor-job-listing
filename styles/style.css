@@ -43,7 +43,7 @@ body {
 #filtersContainer {
   width: 70%;
   background-color: white;
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

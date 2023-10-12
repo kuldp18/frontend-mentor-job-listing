@@ -60,4 +60,22 @@ const createTags = (tags) => {
   return html;
 };
 
-export { renderListing };
+const renderFilter = (tag) => {
+  const range = document.createRange();
+  const filterElem = range.createContextualFragment(`
+       <div class="filter">
+            <div class="filter-name">${tag}</div>
+            <div class="remove">
+              <img src="./images/icon-remove.svg" alt="remove" />
+            </div>
+        </div>
+    `);
+
+  document.querySelector('.filters').appendChild(filterElem);
+
+  if (document.querySelector('#filtersContainer').style.display !== 'flex') {
+    document.querySelector('#filtersContainer').style.display = 'flex';
+  }
+};
+
+export { renderListing, renderFilter };
