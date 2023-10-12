@@ -1,4 +1,4 @@
-import { renderListing, renderFilter } from './dom.js';
+import { renderListing, renderFilter, renderFilterList } from './dom.js';
 
 let tagArr = [];
 
@@ -37,4 +37,19 @@ document.querySelector('.clear').addEventListener('click', (e) => {
   }
   tagArr = [];
   document.querySelector('#filtersContainer').style.display = 'none';
+});
+
+// delete one specific filter
+document.querySelector('.filters').addEventListener('click', (e) => {
+  if (
+    e.target.classList.contains('remove') ||
+    e.target.classList.contains('cross')
+  ) {
+    let closest = e.target.previousElementSibling;
+    tagArr = tagArr.filter((tag) => tag !== closest.innerText);
+    if (tagArr.length === 0) {
+      document.querySelector('#filtersContainer').style.display = 'none';
+    }
+    renderFilterList(tagArr);
+  }
 });

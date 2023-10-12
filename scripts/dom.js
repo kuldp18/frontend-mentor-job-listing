@@ -66,7 +66,7 @@ const renderFilter = (tag) => {
        <div class="filter">
             <div class="filter-name">${tag}</div>
             <div class="remove">
-              <img src="./images/icon-remove.svg" alt="remove" />
+              <img src="./images/icon-remove.svg" alt="remove" class="cross" />
             </div>
         </div>
     `);
@@ -78,4 +78,17 @@ const renderFilter = (tag) => {
   }
 };
 
-export { renderListing, renderFilter };
+const renderFilterList = (filterArr) => {
+  // clear existing filters
+  let parent = document.querySelector('.filters');
+  if (parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+  filterArr.forEach((tag) => {
+    renderFilter(tag);
+  });
+};
+
+export { renderListing, renderFilter, renderFilterList };
