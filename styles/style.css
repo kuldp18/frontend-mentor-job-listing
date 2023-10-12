@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-cyan: hsl(180, 52%, 96%);
+  --green-cyan: hsl(180, 29%, 50%);
+  --filter-cyan: hsl(180, 31%, 95%);
+  --dark-cyan: hsl(180, 8%, 52%);
+  --very-dark-cyan: hsl(180, 14%, 20%);
+  --font-global: 15px;
+}
+
+body {
+  font-family: 'League Spartan', sans-serif;
+  background-color: var(--background-cyan);
+  font-size: var(--font-global);
+}
+
+#header {
+  width: 100%;
+  height: 100px;
+  background-image: url('../images/bg-header-desktop.svg');
+  background-color: var(--green-cyan);
+}
+
+#container {
+  min-height: calc(100vh - 100px);
+  padding: 3rem 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.job-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  width: 70%;
+  background-color: white;
+  -webkit-box-shadow: 0px 19px 52px -7px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 19px 52px -7px rgba(0, 0, 0, 0.22);
+  box-shadow: 0px 19px 52px -7px rgba(0, 0, 0, 0.22);
+}
+
+.job-item.new-listing {
+  border-left: 5px solid var(--green-cyan);
+}
+
+.job-about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.job-about .info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.job-about .info .job-name {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.job-about .info .job-name .more-info {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.job-name .company {
+  color: var(--green-cyan);
+  font-weight: bold;
+}
+
+.more-info .more-tag {
+  text-transform: uppercase;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.more-info .new-tag {
+  background-color: var(--green-cyan);
+}
+
+.more-info .featured-tag {
+  background-color: var(--very-dark-cyan);
+}
+
+.info .details {
+  display: flex;
+  flex-direction: row;
+  color: var(--dark-cyan);
+}
+
+.info .details span::after {
+  content: ' \00b7';
+  margin: 0 1rem;
+}
+
+.info .details span:last-child::after {
+  content: none;
+}
+
+.job-tags {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.job-tags .tag {
+  background-color: var(--background-cyan);
+  color: var(--green-cyan);
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.job-tags .tag:hover {
+  cursor: pointer;
+  background-color: var(--green-cyan);
+  color: var(--background-cyan);
+  transition: all 0.25s ease-in-out;
+}
+
+.job-item .position {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.job-item .position:hover {
+  cursor: pointer;
+  color: var(--green-cyan);
+  transition: all 0.25s ease-in-out;
+}
