@@ -24,6 +24,17 @@ document.querySelector('#container').addEventListener('click', (e) => {
       tagArr.push(e.target.innerText);
       renderFilter(e.target.innerText);
     }
-    console.log(tagArr);
   }
+});
+
+// delete and clear all filters (clear button)
+document.querySelector('.clear').addEventListener('click', (e) => {
+  let parent = document.querySelector('.filters');
+  if (parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+  tagArr = [];
+  document.querySelector('#filtersContainer').style.display = 'none';
 });
