@@ -53,3 +53,7 @@ document.querySelector('.filters').addEventListener('click', (e) => {
     renderFilterList(tagArr);
   }
 });
+
+function isSubset(array1, array2) {
+  return array1.every((item) => array2.includes(item));
+}
