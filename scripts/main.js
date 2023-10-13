@@ -44,13 +44,18 @@ document.querySelector('#container').addEventListener('click', (e) => {
 });
 
 // delete and clear all filters (clear button)
-document.querySelector('.clear').addEventListener('click', (e) => {
+document.querySelector('.clear').addEventListener('click', async (e) => {
   let parent = document.querySelector('.filters');
   if (parent) {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
     }
   }
+  // fetch all jobs
+  jobs = await fetchAllJobs();
+  // re render all jobs
+  renderAllJobs(jobs);
+
   tagArr = [];
   document.querySelector('#filtersContainer').style.display = 'none';
 });
