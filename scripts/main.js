@@ -26,14 +26,14 @@ const renderJobs = async () => {
 renderJobs();
 
 // storing and rendering tags or filters
-document.querySelector('#container').addEventListener('click', (e) => {
+document.querySelector('#container').addEventListener('click', async (e) => {
   if (e.target.classList.contains('tag')) {
     if (!tagArr.includes(e.target.innerText)) {
       tagArr.push(e.target.innerText);
       renderFilter(e.target.innerText);
 
       // filter  jobs
-      jobs = jobs.filter((job) =>
+      jobs = await jobs.filter((job) =>
         getTagsList(job).includes(e.target.innerText)
       );
 
@@ -61,7 +61,7 @@ document.querySelector('.clear').addEventListener('click', async (e) => {
 });
 
 // delete one specific filter
-document.querySelector('.filters').addEventListener('click', (e) => {
+document.querySelector('.filters').addEventListener('click', async (e) => {
   if (
     e.target.classList.contains('remove') ||
     e.target.classList.contains('cross')
@@ -70,8 +70,17 @@ document.querySelector('.filters').addEventListener('click', (e) => {
     tagArr = tagArr.filter((tag) => tag !== closest.innerText);
     if (tagArr.length === 0) {
       document.querySelector('#filtersContainer').style.display = 'none';
+      // fetch all jobs
+      jobs = await fetchAllJobs();
+      // re render all jobs
+      renderAllJobs(jobs);
+      // empty tags
+      tagArr = [];
     }
     renderFilterList(tagArr);
+    jobs = await fetchAllJobs();
+    jobs = await jobs.filter((job) => isSubset(tagArr, getTagsList(job)));
+    renderAllJobs(jobs);
   }
 });
 
