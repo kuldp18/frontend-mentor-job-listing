@@ -52,6 +52,22 @@ const renderListing = (jobData, isNew = false, isFeatured = false) => {
   document.querySelector('#container').appendChild(jobListing);
 };
 
+const renderAllJobs = (jobs) => {
+  // clear existing jobs
+  let parent = document.querySelector('#container');
+  for (let child of parent.children) {
+    if (child.classList.contains('job-item')) {
+      child.style.display = 'none';
+    }
+  }
+
+  // render new jobs
+
+  jobs.forEach((job) => {
+    renderListing(job, job.new, job.featured);
+  });
+};
+
 const createTags = (tags) => {
   let html = '';
   tags.forEach((value) => {
@@ -91,4 +107,20 @@ const renderFilterList = (filterArr) => {
   });
 };
 
-export { renderListing, renderFilter, renderFilterList };
+const fetchAllJobs = async () => {
+  try {
+    const response = await fetch('../data.json');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  renderListing,
+  renderFilter,
+  renderFilterList,
+  fetchAllJobs,
+  renderAllJobs,
+};

@@ -1,6 +1,14 @@
-import { renderListing, renderFilter, renderFilterList } from './dom.js';
+import {
+  renderListing,
+  renderFilter,
+  renderFilterList,
+  fetchAllJobs,
+  renderAllJobs,
+} from './dom.js';
 
 let tagArr = [];
+
+let jobs = await fetchAllJobs();
 
 const renderJobs = async () => {
   try {
@@ -23,6 +31,14 @@ document.querySelector('#container').addEventListener('click', (e) => {
     if (!tagArr.includes(e.target.innerText)) {
       tagArr.push(e.target.innerText);
       renderFilter(e.target.innerText);
+
+      // filter  jobs
+      jobs = jobs.filter((job) =>
+        getTagsList(job).includes(e.target.innerText)
+      );
+
+      // re-render new jobs
+      renderAllJobs(jobs);
     }
   }
 });
@@ -57,3 +73,7 @@ document.querySelector('.filters').addEventListener('click', (e) => {
 function isSubset(array1, array2) {
   return array1.every((item) => array2.includes(item));
 }
+
+const getTagsList = (job) => {
+  return [job.role, job.level, ...job.languages, ...job.tools];
+};
